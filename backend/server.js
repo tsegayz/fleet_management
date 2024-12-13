@@ -1,16 +1,20 @@
-const express = require('express');
-const app = express();
-const PORT = 3000;
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import app from "./app.js"; 
 
-// Middleware to parse JSON requests
-app.use(express.json());
+dotenv.config({ path: "./config.env" });
 
-// Sample Route
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
+const DB = process.env.DATABASE.replace(
+  "<PASSWORD>", 
+  process.env.DATABASE_PASSWORD
+);
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+mongoose
+  .connect(DB)
+  .then(() => console.log("DB connection successful"))
+  .catch((err) => console.error("DB connection error:", err));
+
+const port = 5000;
+app.listen(port, () => {
+  console.log(`Running on port ${port}....`);
 });
