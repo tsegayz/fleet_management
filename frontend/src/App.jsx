@@ -2,13 +2,15 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+const API_URL = "https://pizza-delivery-backend-deploy.vercel.app";
+
 function App() {
 	const [vehicle, setVehicle] = useState([]);
 	const [status, setStatus] = useState({});
 
 	const fetchData = async () => {
 		try {
-			const response = await axios.get("http://localhost:5000/api/v1/vehicles");
+			const response = await axios.get(`${API_URL}/api/v1/vehicles`);
 			const vehicleData = response.data.data;
 
 			// Initialize the status state based on the fetched data
@@ -30,7 +32,7 @@ function App() {
 	const handleStatusChange = async (id, newStatus) => {
 		try {
 			const response = await axios.patch(
-				`http://localhost:5000/api/v1/vehicles/${id}`,
+				`${API_URL}/api/v1/vehicles/${id}`,
 				{
 					status: newStatus,
 				}
