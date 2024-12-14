@@ -14,7 +14,7 @@ const corsOptions = {
 	origin: (origin, callback) => {
 	  const allowedOrigins = [
 		"http://localhost:5173",
-		"https://fleet-management-iota.vercel.app"
+		"https://fleet-management-beryl-five.vercel.app"
 	  ];
   
 	  if (!origin || allowedOrigins.includes(origin)) {
