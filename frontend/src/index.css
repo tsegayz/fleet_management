@@ -6,40 +6,40 @@ body {
 	box-sizing: border-box;
 	background-color: #f9f9f9;
 }
-
-/* Container Styling */
-.container {
-	width: 90%;
-	max-width: 600px;
-	margin: 20px auto;
-	padding: 10px;
-	background: #ffffff;
-	border: 1px solid #ddd;
-	border-radius: 8px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.vehicle-container {
+  display: table;
+  width: 100%;
+  border-collapse: collapse; 
+}
+.vehicle-container .vehicle-row {
+  display: table-row;
+}
+.vehicle-container .vehicle-column {
+  display: table-cell;
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+.vehicle-container .header-row {
+  font-weight: bold;
+  background-color: #f4f4f4;
+}
+select {
+	padding: 6px 15px;
+  font-size: 14px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+}
+select:focus {
+	outline: none;
+	border-color: #007bff; 
+}
+.active-status {
+  background-color: rgb(113, 197, 113);
+  color: white;
+}
+.inactive-status {
+  background-color: rgb(240, 55, 55);
+  color: white;
 }
 
-/* List Styling */
-.listed-next {
-	list-style: none;
-	padding: 10px;
-	margin: 10px 0;
-	border-bottom: 1px solid #ccc;
-}
-
-.listed-next:last-child {
-	border-bottom: none;
-}
-
-.listed-item {
-	padding: 5px 0;
-	font-size: 16px;
-	color: #333;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-	.listed-item {
-		font-size: 14px;
-	}
-}

@@ -1,5 +1,4 @@
-import Vehicle from "./../models/vehicleModel";
-
+import Vehicle from "./../models/vehicleModel.js";
 
 export async function getVehicles(req, res) {
     try {
@@ -37,39 +36,39 @@ export async function createVehicle(req, res) {
 		});
 	}
 }
-
 export async function updateVehicle(req, res) {
-    try {
+  try {
       if (!req.body.status) {
-        return res.status(400).json({
-          status: "fail",
-          message: "Status field is required",
-        });
+          return res.status(400).json({
+              status: "fail",
+              message: "Status field is required",
+          });
       }
-  
-      const updatedVehicle = await Vehicle.findByIdAndUpdate(
-        req.params.id, 
-        { status: req.body.status }, 
-        { new: true, runValidators: true } 
-      );
-  
-      if (!updatedVehicle) {
-        return res.status(404).json({
-          status: "fail",
-          message: "Vehicle not found",
-        });
-      }
-  
-      res.status(200).json({
-        status: "success",
-        data: updatedVehicle,
-      });
-    } catch (err) {
-      res.status(400).json({
-        status: "fail",
-        message: "Invalid data or error during update",
-      });
-    }
-  }
-  
 
+      const updatedVehicle = await Vehicle.findOneAndUpdate(
+          { _id: req.params.id }, 
+          { 
+              status: req.body.status, 
+              lastUpdated: new Date() 
+          },
+          { new: true, runValidators: true } 
+      );
+
+      if (!updatedVehicle) {
+          return res.status(404).json({
+              status: "fail",
+              message: "Vehicle not found",
+          });
+      }
+
+      res.status(200).json({
+          status: "success",
+          data: updatedVehicle,
+      });
+  } catch (err) {
+      res.status(400).json({
+          status: "fail",
+          message: "Invalid data or error during update",
+      });
+  }
+}
