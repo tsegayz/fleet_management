@@ -2,7 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const API_URL = "https://pizza-delivery-backend-deploy.vercel.app";
+const API_URL = "https://fleet-management-backend-flax.vercel.app";
 
 function App() {
 	const [vehicle, setVehicle] = useState([]);
